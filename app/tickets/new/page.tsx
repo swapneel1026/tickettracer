@@ -10,9 +10,12 @@ import SimpleMDE from "react-simplemde-editor";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const New = () => {
-  
+  type FormDetails={
+    title:string;
+    description:string;
+  }
   const router = useRouter();
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control ,formState:{errors} } = useForm<FormDetails>();
   const onSubmit = async (data: any) => {
 
     try {
@@ -28,6 +31,8 @@ const New = () => {
     
     }
   };
+ 
+  
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -42,16 +47,20 @@ const New = () => {
         <FaArrowLeft width="16" height="16" />
         Back
       </Button>
-      <TextField.Root className="">
-        <TextField.Input placeholder="Title" {...register("title")} />
+      <TextField.Root className="flex">
+        <TextField.Input placeholder="Title" {...register("title",{required:"Title is required"})} />
       </TextField.Root>
+        <small className="text-red-500 font-semibold">{errors?.title?.message}</small>
       <Controller
         name="description"
+        rules={{required:"Description is required"}}
         control={control}
         render={({ field }) => (
           <SimpleMDE placeholder="Description here" {...field} />
-        )}
-      />
+          )}
+          />
+                  <small className="text-red-500 font-semibold">{errors?.description?.message}</small>
+
       <Button className="max-w-fit">Submit New Ticket</Button>
     </form>
   );
