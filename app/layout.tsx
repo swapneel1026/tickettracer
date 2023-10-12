@@ -2,6 +2,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
 import Navbar from "./Navbar";
 import "./globals.css";
 
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Theme>
         <Navbar/>
-        <main>{children}</main>
+        
+        <main>
+        <ToastContainer />{children}</main>
         </Theme>
       </body>
     </html>
