@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const TicketsPage = () => {
   const router = useRouter();
   return (
-    <div className="p-6">
+    <div className="p-4">
       <Button
         onClick={() => {
           router.push("/tickets/new");
