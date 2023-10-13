@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
+import StatusBagde from "../components/StatusBagde";
 
 const TicketsPage = async() => {
   const allTickets=await prisma.ticket.findMany()
@@ -29,7 +30,9 @@ const TicketsPage = async() => {
             <Table.Cell className="capitalize">{ticket.title}
             <small className="block md:hidden">{ticket.status}</small>
             </Table.Cell>
-            <Table.Cell className="hidden md:table-cell">{ticket.status}</Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
+              <StatusBagde status={ticket.status}/>
+            </Table.Cell>
             <Table.Cell className="hidden md:table-cell ">{ticket.createdAt.toDateString()}</Table.Cell>
           </Table.Row>
             )
@@ -39,5 +42,5 @@ const TicketsPage = async() => {
     </div>
   );
 };
-export const dynamic='force-dynamic';
+export const revalidate='force';
 export default TicketsPage;

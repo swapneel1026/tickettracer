@@ -21,6 +21,6 @@ model Ticket {
 
 enum Status {
   OPEN
-  OPENIN_PROGRESS
+  IN_PROGRESS
   CLOSED
 }
