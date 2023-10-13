@@ -6,18 +6,18 @@ const TicketsPage = async() => {
   const allTickets=await prisma.ticket.findMany()
   
   return (
-    <div className="p-4">
-      <Button>
+    <div className="px-6 py-4">
+      <Button className="">
         <Link href={"/tickets/new"}>
         Add new Ticket
         </Link>
       </Button>
-      <Table.Root>
+      <Table.Root variant="surface" className="mt-4" >
         <Table.Header>
-        <Table.Row >
-            <Table.Cell>Ticket Title</Table.Cell>
-            <Table.Cell>Issue</Table.Cell>
-            <Table.Cell>Created</Table.Cell>
+        <Table.Row>
+            <Table.ColumnHeaderCell>Ticket Title</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className="hidden md:table-cell">Status</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className="hidden md:table-cell">Created At</Table.ColumnHeaderCell>
           </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -26,9 +26,11 @@ const TicketsPage = async() => {
             return(
 
           <Table.Row key={ticket.id}>
-            <Table.Cell>{ticket.title}</Table.Cell>
-            <Table.Cell className="max-w-[15rem] truncate">{ticket.description}</Table.Cell>
-            <Table.Cell>{ticket.createdAt.toDateString()}</Table.Cell>
+            <Table.Cell className="capitalize">{ticket.title}
+            <small className="block md:hidden">{ticket.status}</small>
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">{ticket.status}</Table.Cell>
+            <Table.Cell className="hidden md:table-cell ">{ticket.createdAt.toDateString()}</Table.Cell>
           </Table.Row>
             )
           })}
