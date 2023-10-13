@@ -24,6 +24,7 @@ const New = () => {
         theme:"light",
         })
       router.push("/tickets");
+      router.refresh()
     } catch (error) {      
      toast.error("Unexpected Error Occured",{
       theme:"light",
