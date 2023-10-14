@@ -1,7 +1,9 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
-import { Card, Heading, Text } from "@radix-ui/themes";
+import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa6";
 
 interface Props {
   params: { ticketid: string };
@@ -16,6 +18,14 @@ const TicketdescriptionPage = async ({ params }: Props) => {
 
   return (
     <div className="max-w-[70rem] mx-auto">
+      <Button style={{ margin: "16px" }}>
+        <Link href={"/tickets"}>
+          <Flex direction={"row"} align={"center"} justify={"center"} gap={"2"}>
+            <FaArrowLeft />
+            Back
+          </Flex>
+        </Link>
+      </Button>
       <Heading
         size={"8"}
         style={{ marginInline: "16px", marginBottom: "8px" }}
@@ -24,7 +34,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
         {ticket?.title}
       </Heading>
       <div className="inline-flex space-x-4 mx-4 ">
-        <StatusBagde   status={ticket.status} />
+        <StatusBagde status={ticket.status} />
         <Text as="div" size="2" color="gray">
           {ticket?.updatedAt.toDateString()}
         </Text>

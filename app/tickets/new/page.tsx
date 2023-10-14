@@ -72,7 +72,7 @@ const New = () => {
         {errors?.description?.message}
       </small>
 
-      <Button className="max-w-fit">Submit New Ticket</Button>
+      <Button  className="max-w-fit">Submit New Ticket</Button>
     </form>
   );
 };
