@@ -1,8 +1,8 @@
 import prisma from "@/prisma/client";
-import { Button, Table } from "@radix-ui/themes";
+import { Table } from "@radix-ui/themes";
 import delay from 'delay';
-import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
+import TicketActionBar from "../components/ticketAction";
 
 const TicketsPage = async() => {
   const allTickets=await prisma.ticket.findMany()
@@ -10,11 +10,7 @@ const TicketsPage = async() => {
   
   return (
     <div className="px-6 py-4">
-      <Button className="">
-        <Link href={"/tickets/new"}>
-        Add new Ticket
-        </Link>
-      </Button>
+     <TicketActionBar />
       <Table.Root variant="surface" className="mt-4" >
         <Table.Header>
         <Table.Row>
