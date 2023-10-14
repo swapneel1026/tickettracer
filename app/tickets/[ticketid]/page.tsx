@@ -1,6 +1,7 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
-import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { Pencil2Icon } from "@radix-ui/react-icons";
+import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import delay from "delay";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -20,7 +21,8 @@ const TicketdescriptionPage = async ({ params }: Props) => {
   await delay(3000)
 
   return (
-    <div className="max-w-[70rem] mx-auto border rounded-lg">
+    <Grid className="max-w-[70rem] mx-auto border rounded-lg" columns={{initial: "1",md:"2"}} >
+      <Box>
       <Button style={{ margin: "16px" }}>
         <Link href={"/tickets"}>
           <Flex direction={"row"} align={"center"} justify={"center"} gap={"2"}>
@@ -45,7 +47,16 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       <Card className="m-4 w-auto prose">
         <ReactMarkdown>{ticket?.description}</ReactMarkdown>
       </Card>
-    </div>
+      </Box>
+      <Box>
+        <Button style={{marginTop:"16px"}}>
+          <Link href={`/tickets/${ticket.id}/edit`} className="flex items-center gap-2">
+          <Pencil2Icon/>
+            Edit Issues
+          </Link>
+        </Button>
+      </Box>
+    </Grid>
   );
 };
 
