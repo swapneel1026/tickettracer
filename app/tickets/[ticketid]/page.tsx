@@ -34,13 +34,13 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       >
         {ticket?.title}
       </Heading>
-      <div className="inline-flex space-x-4 mx-4 ">
+      <div className="inline-flex  space-x-4 mx-4 ">
         <StatusBagde status={ticket.status} />
         <Text as="div" size="2" color="gray">
           {ticket?.updatedAt.toDateString()}
         </Text>
       </div>
-      <Card className="m-4 w-auto ">
+      <Card className="m-4 w-auto prose">
         <ReactMarkdown>{ticket?.description}</ReactMarkdown>
       </Card>
     </div>
