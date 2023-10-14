@@ -15,11 +15,11 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
-interface Props{
-  ticket?:Ticket
+interface Props {
+  ticket?: Ticket;
 }
 
-const NewTicketForm = ({ticket}:Props) => {
+const NewTicketForm = ({ ticket }: Props) => {
   type FormDetails = {
     title: string;
     description: string;
@@ -47,45 +47,51 @@ const NewTicketForm = ({ticket}:Props) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-xl p-4 flex flex-col space-y-3"
-    >
-      <Button
-        className="max-w-fit"
-        onClick={(e) => {
-          e.preventDefault();
-          router.back();
-        }}
-      >
-        <FaArrowLeft width="16" height="16" />
-        Back
-      </Button>
-      <TextField.Root>
-        <TextField.Input
-          defaultValue={ticket?.title}
-          placeholder="Title"
-          {...register("title", { required: "Title is required" })}
-        />
-      </TextField.Root>
-      <small className="text-red-500 font-semibold">
-        {errors?.title?.message}
-      </small>
-      <Controller
-        name="description"
-        rules={{ required: "Description is required" }}
-        control={control}
-        defaultValue={ticket?.description}
-        render={({ field }) => (
-          <SimpleMDE placeholder="Description here" {...field} />
-        )}
-      />
-      <small className="text-red-500 font-semibold">
-        {errors?.description?.message}
-      </small>
+    <>
+      {ticket?.status !== "CLOSED" ? (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-xl p-4 flex flex-col space-y-3"
+        >
+          <Button
+            className="max-w-fit"
+            onClick={(e) => {
+              e.preventDefault();
+              router.back();
+            }}
+          >
+            <FaArrowLeft width="16" height="16" />
+            Back
+          </Button>
+          <TextField.Root>
+            <TextField.Input
+              defaultValue={ticket?.title}
+              placeholder="Title"
+              {...register("title", { required: "Title is required" })}
+            />
+          </TextField.Root>
+          <small className="text-red-500 font-semibold">
+            {errors?.title?.message}
+          </small>
+          <Controller
+            name="description"
+            rules={{ required: "Description is required" }}
+            control={control}
+            defaultValue={ticket?.description}
+            render={({ field }) => (
+              <SimpleMDE placeholder="Description here" {...field} />
+            )}
+          />
+          <small className="text-red-500 font-semibold">
+            {errors?.description?.message}
+          </small>
 
-      <Button className="max-w-fit">Submit New Ticket</Button>
-    </form>
+          <Button className="max-w-fit">Submit New Ticket</Button>
+        </form>
+      ) : (
+        <div>Ticket has been CLOSED</div>
+      )}
+    </>
   );
 };
 
