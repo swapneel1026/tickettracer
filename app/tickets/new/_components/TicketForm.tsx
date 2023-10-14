@@ -4,17 +4,16 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Button, Callout, Link, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
+import SimpleMDE from 'react-simplemde-editor';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 // disabling ssr using dynamic from next/dynamic
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
+// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+//   ssr: false,
+// });
 
 interface Props {
   ticket?: Ticket;

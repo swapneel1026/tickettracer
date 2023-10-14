@@ -1,9 +1,15 @@
-import NewTicketForm from "./_components/TicketForm"
+import dynamic from "next/dynamic";
+import LoadingSkeleton from "./loading";
 
+const NewTicketForm = dynamic(
+  () => import("@/app/tickets/new/_components/TicketForm"),
+  {
+    ssr: false,
+    loading:()=><LoadingSkeleton/>
+  }
+);
 const NewTicket = () => {
-  return (
-    <NewTicketForm/>
-  )
-}
+  return <NewTicketForm />;
+};
 
-export default NewTicket
+export default NewTicket;
