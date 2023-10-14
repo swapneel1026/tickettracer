@@ -3,8 +3,12 @@ import prisma from "@/prisma/client";
 type Props = {
   ticketid: string;
 };
-const page = async({ params }: { params: Props }) => {
-  const ticket=await prisma.ticket.findUnique({ where: { id: parseInt(params.ticketid) } });
+const page = async ({ params }: { params: Props }) => {
+  // if (typeof params.ticketid != "number") notFound();
+  const ticket = await prisma.ticket.findUnique({
+    where: { id: parseInt(params.ticketid) },
+  });
+
   return (
     <div>
       <p>{ticket?.id}</p>
