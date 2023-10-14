@@ -4,7 +4,6 @@ type Props = {
   ticketid: string;
 };
 const page = async ({ params }: { params: Props }) => {
-  // if (typeof params.ticketid != "number") notFound();
   const ticket = await prisma.ticket.findUnique({
     where: { id: parseInt(params.ticketid) },
   });
