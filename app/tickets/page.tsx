@@ -1,5 +1,5 @@
 import prisma from "@/prisma/client";
-import { Table } from "@radix-ui/themes";
+import { Button, Table } from "@radix-ui/themes";
 import delay from "delay";
 import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
@@ -7,7 +7,7 @@ import TicketActionBar from "../components/ticketAction";
 
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
-  await delay(500)
+  await delay(500);
 
   return (
     <div className="px-6 py-4">
@@ -28,16 +28,15 @@ const TicketsPage = async () => {
           {allTickets?.map((ticket) => {
             return (
               <Table.Row key={ticket.id}>
-                <Table.Cell className="capitalize">
-                  <Link href={`tickets/${ticket.id}`}>
-
-                  {ticket.title}
-                  </Link>
+                <Table.Cell className="font-semibold text-md cursor-pointer">
+                  <Button variant="soft" className="capitalize">
+                    <Link href={`tickets/${ticket.id}`}>{ticket.title}</Link>
+                  </Button>
                   <span className="block md:hidden">
                     <StatusBagde status={ticket.status} />
                   </span>
                   <span className="block md:hidden">
-                  {ticket.createdAt.toDateString()}
+                    {ticket.createdAt.toDateString()}
                   </span>
                 </Table.Cell>
                 <Table.Cell className="hidden md:table-cell">
