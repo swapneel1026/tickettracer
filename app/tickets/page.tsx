@@ -33,14 +33,14 @@ const TicketsPage = async () => {
                   <Button variant="soft" className="capitalize">
                     <Link href={`tickets/${ticket.id}`}>{ticket.title}</Link>
                   </Button>
-                  <span className="block md:hidden">
+                  <span className="block md:hidden mt-2 md:mt-0">
                     <StatusBagde status={ticket.status} />
                   </span>
-                  <span className="block md:hidden">
+                  <span className="block md:hidden mt-2 md:mt-0">
                     {ticket.createdAt.toDateString()}
                   </span>
                 </Table.Cell>
-                <Table.Cell className="hidden md:table-cell">
+                <Table.Cell className="hidden md:table-cell ">
                   <StatusBagde status={ticket.status} />
                 </Table.Cell>
                 <Table.Cell className="hidden md:table-cell ">
