@@ -1,11 +1,12 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
+import delay from "delay";
 import StatusBagde from "../components/StatusBagde";
 import TicketActionBar from "../components/ticketAction";
 
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
-  // await delay(2000)
+  await delay(2000)
 
   return (
     <div className="px-6 py-4">
