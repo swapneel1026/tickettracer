@@ -1,12 +1,13 @@
-import { Table } from "@radix-ui/themes";
+import { Button, Table } from "@radix-ui/themes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import TicketActionBar from "../components/ticketAction";
 const loading = () => {
   const allTickets = [1, 2, 3, 4, 5];
   return (
     <div className="px-6 py-4">
-      <TicketActionBar/>
+       <Button >
+      Add new Ticket
+    </Button>
       <Table.Root variant="surface" className="mt-4">
         <Table.Header>
           <Table.Row>

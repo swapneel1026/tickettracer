@@ -8,32 +8,34 @@ import { Controller, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
 import SimpleMDE from "react-simplemde-editor";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 const New = () => {
-  type FormDetails={
-    title:string;
-    description:string;
-  }
+  type FormDetails = {
+    title: string;
+    description: string;
+  };
   const router = useRouter();
-  const { register, handleSubmit, control ,formState:{errors} } = useForm<FormDetails>();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormDetails>();
   const onSubmit = async (data: any) => {
-
     try {
       await axios.post("/api/tickets", data);
-      toast.success("Ticket successfully created",{
-        theme:"light",
-        })
+      toast.success("Ticket successfully created", {
+        theme: "light",
+      });
       router.push("/tickets");
-      router.refresh()
-    } catch (error) {      
-     toast.error("Unexpected Error Occured",{
-      theme:"light",
-      })
-    
+      router.refresh();
+    } catch (error) {
+      toast.error("Unexpected Error Occured", {
+        theme: "light",
+      });
     }
   };
- 
-  
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -41,7 +43,8 @@ const New = () => {
     >
       <Button
         className="max-w-fit"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault()
           router.back();
         }}
       >
@@ -49,18 +52,25 @@ const New = () => {
         Back
       </Button>
       <TextField.Root className="flex">
-        <TextField.Input placeholder="Title" {...register("title",{required:"Title is required"})} />
+        <TextField.Input
+          placeholder="Title"
+          {...register("title", { required: "Title is required" })}
+        />
       </TextField.Root>
-        <small className="text-red-500 font-semibold">{errors?.title?.message}</small>
+      <small className="text-red-500 font-semibold">
+        {errors?.title?.message}
+      </small>
       <Controller
         name="description"
-        rules={{required:"Description is required"}}
+        rules={{ required: "Description is required" }}
         control={control}
         render={({ field }) => (
           <SimpleMDE placeholder="Description here" {...field} />
-          )}
-          />
-                  <small className="text-red-500 font-semibold">{errors?.description?.message}</small>
+        )}
+      />
+      <small className="text-red-500 font-semibold">
+        {errors?.description?.message}
+      </small>
 
       <Button className="max-w-fit">Submit New Ticket</Button>
     </form>
