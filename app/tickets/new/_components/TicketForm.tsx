@@ -1,6 +1,7 @@
 "use client";
 import { Ticket } from "@prisma/client";
-import { Button, TextField } from "@radix-ui/themes";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { Button, Callout, Link, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
@@ -33,10 +34,17 @@ const NewTicketForm = ({ ticket }: Props) => {
   } = useForm<FormDetails>();
   const onSubmit = async (data: any) => {
     try {
-      await axios.post("/api/tickets", data);
-      toast.success("Ticket successfully created", {
-        theme: "light",
-      });
+      if (ticket) {
+        await axios.patch(`/api/tickets/${ticket?.id}`, data);
+        toast.success("Ticket successfully updated", {
+          theme: "light",
+        });
+      } else {
+        await axios.post("/api/tickets", data);
+        toast.success("Ticket successfully created", {
+          theme: "light",
+        });
+      }
       router.push("/tickets");
       router.refresh();
     } catch (error) {
@@ -86,10 +94,18 @@ const NewTicketForm = ({ ticket }: Props) => {
             {errors?.description?.message}
           </small>
 
-          <Button className="max-w-fit">Submit New Ticket</Button>
+          <Button className="max-w-fit">{ticket?"Update":"Submit"} New Ticket</Button>
         </form>
       ) : (
-        <div>Ticket has been CLOSED</div>
+        <Callout.Root>
+  <Callout.Icon>
+    <InfoCircledIcon />
+  </Callout.Icon>
+  <Callout.Text size={"7"}>
+    Ticket has been closed.
+  </Callout.Text>
+    <Link href="/tickets" size="1" color="red">Take me to tickets section.</Link>
+</Callout.Root>
       )}
     </>
   );
