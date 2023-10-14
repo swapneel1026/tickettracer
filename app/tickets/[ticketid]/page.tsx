@@ -4,6 +4,7 @@ import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   params: { ticketid: string };
@@ -40,7 +41,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
         </Text>
       </div>
       <Card className="m-4 w-auto ">
-        <p>{ticket?.description}</p>
+        <ReactMarkdown>{ticket?.description}</ReactMarkdown>
       </Card>
     </div>
   );
