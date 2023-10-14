@@ -7,7 +7,7 @@ import TicketActionBar from "../components/ticketAction";
 
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
-  await delay(2000)
+  await delay(500)
 
   return (
     <div className="px-6 py-4">
