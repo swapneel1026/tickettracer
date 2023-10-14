@@ -3,7 +3,7 @@ import prisma from "@/prisma/client";
 type Props = {
   ticketid: string;
 };
-const page = async ({ params }: { params: Props }) => {
+const TicketdescriptionPage = async ({ params }: { params: Props }) => {
   const ticket = await prisma.ticket.findUnique({
     where: { id: parseInt(params.ticketid) },
   });
@@ -19,4 +19,4 @@ const page = async ({ params }: { params: Props }) => {
   );
 };
 
-export default page;
+export default TicketdescriptionPage;
