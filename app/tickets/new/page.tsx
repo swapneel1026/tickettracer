@@ -9,8 +9,11 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// disabling ssr using dynamic from next/dynamic
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
-const SimpleMDE =dynamic(()=>import('react-simplemde-editor'),{ssr:false})
 const New = () => {
   type FormDetails = {
     title: string;
