@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
 import delay from "delay";
+import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
 import TicketActionBar from "../components/ticketAction";
 
@@ -28,7 +29,10 @@ const TicketsPage = async () => {
             return (
               <Table.Row key={ticket.id}>
                 <Table.Cell className="capitalize">
+                  <Link href={`tickets/${ticket.id}`}>
+
                   {ticket.title}
+                  </Link>
                   <span className="block md:hidden">
                     <StatusBagde status={ticket.status} />
                   </span>
