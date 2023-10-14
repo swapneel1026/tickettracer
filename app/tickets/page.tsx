@@ -7,12 +7,13 @@ import TicketActionBar from "../components/ticketAction";
 
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
+  const reversedTickets=allTickets.reverse()
   await delay(500);
 
   return (
     <div className="px-6 py-4">
       <TicketActionBar />
-      <Table.Root variant="surface" className="mt-4">
+      <Table.Root variant="surface" className="mt-4" >
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Ticket Title</Table.ColumnHeaderCell>
@@ -25,7 +26,7 @@ const TicketsPage = async () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {allTickets?.map((ticket) => {
+          {reversedTickets?.map((ticket) => {
             return (
               <Table.Row key={ticket.id}>
                 <Table.Cell className="font-semibold text-md cursor-pointer">
