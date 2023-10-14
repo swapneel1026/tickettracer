@@ -34,7 +34,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       >
         {ticket?.title}
       </Heading>
-      <div className="inline-flex  space-x-4 mx-4 ">
+      <div className="inline-flex items-center space-x-4 mx-4 ">
         <StatusBagde status={ticket.status} />
         <Text as="div" size="2" color="gray">
           {ticket?.updatedAt.toDateString()}
