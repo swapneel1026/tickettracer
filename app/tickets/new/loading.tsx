@@ -1,17 +1,15 @@
-"use client";
-
+import { Box } from "@radix-ui/themes";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const loading = () => {
+const Loading = () => {
   return (
-    <div className="max-w-xl p-4 flex flex-col space-y-3">
-   <Skeleton count={20} height={30} />
-
-      
-
-      
-    </div>
+    <Box className="max-w-xl p-4 flex flex-col space-y-3">
+      <p>loading...</p>
+      <Skeleton />
+      <Skeleton height={"20rem"}/>
+    </Box>
   );
 };
 
-export default loading;
+export default Loading;

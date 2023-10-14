@@ -1,6 +1,7 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
 import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import delay from "delay";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -16,9 +17,10 @@ const TicketdescriptionPage = async ({ params }: Props) => {
     where: { id: parseInt(params.ticketid) },
   });
   if (!ticket) notFound();
+  await delay(3000)
 
   return (
-    <div className="max-w-[70rem] mx-auto">
+    <div className="max-w-[70rem] mx-auto border rounded-lg">
       <Button style={{ margin: "16px" }}>
         <Link href={"/tickets"}>
           <Flex direction={"row"} align={"center"} justify={"center"} gap={"2"}>

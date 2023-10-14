@@ -44,14 +44,14 @@ const New = () => {
       <Button
         className="max-w-fit"
         onClick={(e) => {
-          e.preventDefault()
+          e.preventDefault();
           router.back();
         }}
       >
         <FaArrowLeft width="16" height="16" />
         Back
       </Button>
-      <TextField.Root className="flex">
+      <TextField.Root>
         <TextField.Input
           placeholder="Title"
           {...register("title", { required: "Title is required" })}
@@ -72,7 +72,7 @@ const New = () => {
         {errors?.description?.message}
       </small>
 
-      <Button  className="max-w-fit">Submit New Ticket</Button>
+      <Button className="max-w-fit">Submit New Ticket</Button>
     </form>
   );
 };
