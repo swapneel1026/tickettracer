@@ -2,6 +2,8 @@
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,9 +12,11 @@ type ticketProps = {
 };
 const DeleteButton = ({ id }: ticketProps) => {
   const router = useRouter();
+  const[isDeleting,setdeleting]=useState(false);
 
   async function ticketdelete(id: any) {
     try {
+      setdeleting(true)
        await axios.delete(`/api/tickets/${id}`);
       toast.success(`Ticket with successfully deleted`, {
         theme: "light",
@@ -20,14 +24,16 @@ const DeleteButton = ({ id }: ticketProps) => {
       router.push("/tickets");
       router.refresh();
     } catch (error:any) {
+      setdeleting(false)
       toast.error(error?.message);
     }
   }
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button color="red" style={{ marginTop: "16px" }}>
+        <Button color="red" disabled={isDeleting} style={{ marginTop: "16px" }}>
           Delete Ticket
+          <ClipLoader size={"18px"} color="white" loading={isDeleting} />
         </Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content style={{ maxWidth: 450 }}>
