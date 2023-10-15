@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const currentPath = usePathname();
   return (
-    <nav className="py-4 px-6 mb-10 flex space-x-4 border-b-2 justify-between">
+    <nav className="py-4 px-6  flex space-x-4 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
       <section className="flex space-x-8 items-center">
         <Link href={"/"} className="flex space-x-2 items-center">
           <IconContext.Provider value={{ className: "text-blue-500" }}>
