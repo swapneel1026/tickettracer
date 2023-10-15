@@ -13,7 +13,6 @@ const DeleteButton = ({ id }: ticketProps) => {
 
   async function ticketdelete(id: any) {
     const deleteResponse = await axios.delete(`/api/tickets/${id}`);
-    console.log(deleteResponse);
 
     if (deleteResponse.status === 200) {
       toast.success(
