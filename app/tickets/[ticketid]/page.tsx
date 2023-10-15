@@ -71,7 +71,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
             }`}
           >
             <Pencil2Icon />
-            Edit Issues
+            Edit Ticket
           </Link>
         </Button>
         <DeleteButton id={ticket?.id} />
