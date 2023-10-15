@@ -22,6 +22,7 @@ const DeleteButton = ({ id }: ticketProps) => {
         }
       );
       router.push("/tickets");
+      router.refresh()
     }
   }
   return (
