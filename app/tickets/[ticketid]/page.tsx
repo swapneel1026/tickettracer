@@ -74,7 +74,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
             Edit Issues
           </Link>
         </Button>
-        <DeleteButton status={ticket?.status} id={ticket?.id} />
+        <DeleteButton id={ticket?.id} />
       </Box>
     </Grid>
   );
