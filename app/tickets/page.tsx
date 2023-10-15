@@ -11,7 +11,7 @@ const TicketsPage = async () => {
   await delay(500);
 
   return (
-    <div className="p-4 max-w-[70rem] mx-auto ">
+    <div className="p-4 max-w-[70rem] mx-auto">
       {allTickets?.length !== 0 ? (
         <>
           <TicketActionBar />

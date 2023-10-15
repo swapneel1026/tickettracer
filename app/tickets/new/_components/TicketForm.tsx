@@ -65,7 +65,7 @@ const NewTicketForm = ({ ticket }: Props) => {
       {ticket?.status !== "CLOSED" ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className=" p-4 flex flex-col space-y-3 max-w-[70rem] mx-auto"
+          className=" p-4 flex flex-col space-y-3 max-w-[70rem] mx-auto "
         >
           <Button
             className="max-w-fit"

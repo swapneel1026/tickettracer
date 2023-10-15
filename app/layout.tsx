@@ -20,11 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} scrollbar-hide`} >
         <Theme>
         <Navbar/>
         
-        <main className='mt-32 md:mt-20'>
+        <main className='mt-32 md:mt-20 '>
         <ToastContainer />{children}</main>
         </Theme>
       </body>
