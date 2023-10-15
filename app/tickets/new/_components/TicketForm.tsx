@@ -44,7 +44,7 @@ const NewTicketForm = ({ ticket }: Props) => {
           theme: "light",
         });
       }
-      router.push("/tickets");
+      router.push("/tickets");  
       router.refresh();
     } catch (error) {
       toast.error("Unexpected Error Occured", {
@@ -58,7 +58,7 @@ const NewTicketForm = ({ ticket }: Props) => {
       {ticket?.status !== "CLOSED" ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-xl p-4 flex flex-col space-y-3"
+          className=" p-4 flex flex-col space-y-3 max-w-[70rem] mx-auto"
         >
           <Button
             className="max-w-fit"
