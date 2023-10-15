@@ -7,7 +7,7 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
-import SimpleMDE from 'react-simplemde-editor';
+import SimpleMDE from "react-simplemde-editor";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // disabling ssr using dynamic from next/dynamic
@@ -44,7 +44,7 @@ const NewTicketForm = ({ ticket }: Props) => {
           theme: "light",
         });
       }
-      router.push("/tickets");  
+      router.push("/tickets");
       router.refresh();
     } catch (error) {
       toast.error("Unexpected Error Occured", {
@@ -93,21 +93,24 @@ const NewTicketForm = ({ ticket }: Props) => {
             {errors?.description?.message}
           </small>
 
-          <Button className="max-w-fit">{ticket?"Update":"Submit"} New Ticket</Button>
+          <Button className="max-w-fit">
+            {ticket ? "Update" : "Submit"} New Ticket
+          </Button>
         </form>
       ) : (
         <Callout.Root>
-  <Callout.Icon>
-    <InfoCircledIcon />
-  </Callout.Icon>
-  <Callout.Text size={"7"}>
-    Ticket has been closed.
-  </Callout.Text>
-    <Link href="/tickets" size="1" color="red">Take me to tickets section.</Link>
-</Callout.Root>
+          <Callout.Icon>
+            <InfoCircledIcon />
+          </Callout.Icon>
+          <Callout.Text size={"7"}>Ticket has been closed.</Callout.Text>
+          <Link href="/tickets" size="1" color="red">
+            Take me to tickets section.
+          </Link>
+        </Callout.Root>
       )}
     </>
   );
 };
 
 export default NewTicketForm;
+

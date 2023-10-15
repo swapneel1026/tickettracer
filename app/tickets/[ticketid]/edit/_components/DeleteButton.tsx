@@ -12,17 +12,15 @@ const DeleteButton = ({ id }: ticketProps) => {
   const router = useRouter();
 
   async function ticketdelete(id: any) {
-    const deleteResponse = await axios.delete(`/api/tickets/${id}`);
-
-    if (deleteResponse.status === 200) {
-      toast.success(
-        `Ticket with successfully deleted`,
-        {
-          theme: "light",
-        }
-      );
+    try {
+       await axios.delete(`/api/tickets/${id}`);
+      toast.success(`Ticket with successfully deleted`, {
+        theme: "light",
+      });
       router.push("/tickets");
-      router.refresh()
+      router.refresh();
+    } catch (error:any) {
+      toast.error(error?.message);
     }
   }
   return (
