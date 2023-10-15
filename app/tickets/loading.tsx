@@ -1,8 +1,9 @@
+import prisma from "@/prisma/client";
 import { Button, Table } from "@radix-ui/themes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const loading = () => {
-  const allTickets = [1, 2, 3, 4, 5];
+const loading = async() => {
+  const allTickets = await prisma.ticket.findMany();
   return (
     <div className="px-6 py-4">
        <Button >
@@ -23,7 +24,7 @@ const loading = () => {
         <Table.Body>
           {allTickets?.map((ticket) => {
             return (
-              <Table.Row key={ticket}>
+              <Table.Row key={ticket.id}>
                 <Table.Cell className="capitalize">
                   <Skeleton />
                   <small className="block md:hidden">
