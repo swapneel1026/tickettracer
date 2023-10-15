@@ -5,9 +5,11 @@ import { Button, Callout, Link, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
 import SimpleMDE from "react-simplemde-editor";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // disabling ssr using dynamic from next/dynamic
@@ -25,6 +27,8 @@ const NewTicketForm = ({ ticket }: Props) => {
     description: string;
   };
   const router = useRouter();
+  const[inProgress,setProgress]=useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,11 +38,13 @@ const NewTicketForm = ({ ticket }: Props) => {
   const onSubmit = async (data: any) => {
     try {
       if (ticket) {
+        setProgress(true)
         await axios.patch(`/api/tickets/${ticket?.id}`, data);
         toast.success("Ticket successfully updated", {
           theme: "light",
         });
       } else {
+        setProgress(true)
         await axios.post("/api/tickets", data);
         toast.success("Ticket successfully created", {
           theme: "light",
@@ -47,6 +53,7 @@ const NewTicketForm = ({ ticket }: Props) => {
       router.push("/tickets");
       router.refresh();
     } catch (error) {
+      setProgress(false)
       toast.error("Unexpected Error Occured", {
         theme: "light",
       });
@@ -93,8 +100,9 @@ const NewTicketForm = ({ ticket }: Props) => {
             {errors?.description?.message}
           </small>
 
-          <Button className="max-w-fit">
+          <Button className="max-w-fit" disabled={inProgress}>
             {ticket ? "Update" : "Submit"} New Ticket
+            <ClipLoader size={"18px"} color="white" loading={inProgress} />
           </Button>
         </form>
       ) : (
