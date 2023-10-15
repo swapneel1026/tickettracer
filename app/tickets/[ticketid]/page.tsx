@@ -7,6 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReactMarkdown from "react-markdown";
+import DeleteButton from "./edit/_components/DeleteButton";
 
 interface Props {
   params: { ticketid: string };
@@ -56,7 +57,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
           <ReactMarkdown>{ticket?.description}</ReactMarkdown>
         </Card>
       </Box>
-      <Box>
+      <Box className="inline-flex space-x-2 justify-center lg:justify-normal">
         <Button
           style={{ marginTop: "16px" }}
           disabled={ticket?.status === "CLOSED"}
@@ -73,6 +74,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
             Edit Issues
           </Link>
         </Button>
+        <DeleteButton status={ticket?.status} id={ticket?.id} />
       </Box>
     </Grid>
   );
