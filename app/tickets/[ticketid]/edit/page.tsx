@@ -1,12 +1,14 @@
 import prisma from "@/prisma/client";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import LoadingSkeleton from "../../new/loading";
 
 // disbaling ssr for this component
 const NewTicketForm = dynamic(
   () => import("../../new/_components/TicketForm"),
   {
     ssr: false,
+    loading:()=><LoadingSkeleton/>  
   }
 );
 
