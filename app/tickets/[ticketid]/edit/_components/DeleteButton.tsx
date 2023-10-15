@@ -10,7 +10,6 @@ const DeleteButton = ({ status, id }: ticketProps) => {
   return (
     <Button
       style={{ marginTop: "16px" }}
-      disabled={status === "CLOSED"}
       color="red"
     >
       <TrashIcon />
