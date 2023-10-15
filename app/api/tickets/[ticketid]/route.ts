@@ -31,3 +31,22 @@ export async function PATCH(
     statusText: "Data updated successfully",
   });
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { ticketid: string } }
+) {
+  const ticket = await prisma.ticket.findUnique({
+    where: { id: parseInt(params.ticketid) },
+  });
+  if (!ticket)
+    return NextResponse.json({ error: "Ticket not found" }, { status: 404 });
+
+  await prisma.ticket.delete({
+    where: { id: parseInt(params.ticketid) },
+  });
+  return NextResponse.json(
+    { title: ticket.title },
+    { status: 200, statusText: "Ticket deleted successfully" }
+  );
+}
