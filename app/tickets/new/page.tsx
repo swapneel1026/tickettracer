@@ -5,7 +5,7 @@ const NewTicketForm = dynamic(
   () => import("@/app/tickets/new/_components/TicketForm"),
   {
     ssr: false,
-    loading:()=><LoadingSkeleton/>
+    loading:()=><LoadingSkeleton/>  
   }
 );
 const NewTicket = () => {
