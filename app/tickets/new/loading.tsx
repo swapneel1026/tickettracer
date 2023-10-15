@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const LoadingSkeleton = () => {
   return (
-    <Box className="max-w-xl p-4 flex flex-col space-y-3">
+    <Box className="p-4 flex flex-col space-y-3 max-w-[70rem] mx-auto">
       <Skeleton height={"2rem"} width={"6rem"} />
       <Skeleton />
       <Skeleton height={"20rem"} />
