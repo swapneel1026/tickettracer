@@ -24,7 +24,7 @@ export default function RootLayout({
         <Theme>
         <Navbar/>
         
-        <main className='mt-20'>
+        <main className='mt-32 md:mt-20'>
         <ToastContainer />{children}</main>
         </Theme>
       </body>

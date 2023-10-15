@@ -26,13 +26,13 @@ const Navbar = () => {
 
   const currentPath = usePathname();
   return (
-    <nav className="py-4 px-6  flex space-x-4 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
-      <section className="flex space-x-8 items-center">
+    <nav className="py-4 px-6 md:flex-row flex-col flex space-y-4 md:space-y-0 md:space-x-2 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
+      <section className="flex md:space-x-8 justify-between md:items-center">
         <Link href={"/"} className="flex space-x-2 items-center">
           <IconContext.Provider value={{ className: "text-blue-500" }}>
             <FaBug />
           </IconContext.Provider>
-          <p className="font-extrabold text-2xl text-blue-400">TicketTracer</p>
+          <p className="font-extrabold md:text-2xl text-blue-400">TicketTracer</p>
         </Link>
         <ul className="flex space-x-2 items-center">
           {links.map((link) => {
@@ -53,7 +53,7 @@ const Navbar = () => {
           })}
         </ul>
       </section>
-      <ul className="flex space-x-3 items-center">
+      <ul className="flex space-x-3 items-center justify-center md:justify-normal">
         <HoverCard.Root>
           <HoverCard.Trigger>
             <Avatar
