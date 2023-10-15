@@ -5,7 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const loading = async() => {
   const allTickets = await prisma.ticket.findMany();
   return (
-    <div className="px-6 py-4">
+    <div className="px-6 py-4 max-w-[70rem] mx-auto">
        <Button >
       Add new Ticket
     </Button>
