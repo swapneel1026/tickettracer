@@ -27,7 +27,6 @@ const Navbar = () => {
 
   const currentPath = usePathname();
   const { data: session, status } = useSession();
-  console.log(session);
 
   return (
     <nav className="py-4 px-6 md:flex-row flex-col flex space-y-4 md:space-y-0 md:space-x-2 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
