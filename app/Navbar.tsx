@@ -9,6 +9,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import classnames from "classnames";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconContext } from "react-icons";
@@ -25,6 +26,9 @@ const Navbar = () => {
   ];
 
   const currentPath = usePathname();
+  const { data: session, status } = useSession();
+  console.log(session);
+
   return (
     <nav className="py-4 px-6 md:flex-row flex-col flex space-y-4 md:space-y-0 md:space-x-2 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
       <section className="flex md:space-x-8 justify-between md:items-center">
@@ -32,7 +36,9 @@ const Navbar = () => {
           <IconContext.Provider value={{ className: "text-blue-500" }}>
             <FaBug />
           </IconContext.Provider>
-          <p className="font-extrabold md:text-2xl text-blue-400">TicketTracer</p>
+          <p className="font-extrabold md:text-2xl text-blue-400">
+            TicketTracer
+          </p>
         </Link>
         <ul className="flex space-x-2 items-center">
           {links.map((link) => {
@@ -54,44 +60,54 @@ const Navbar = () => {
         </ul>
       </section>
       <ul className="flex space-x-3 items-center justify-center md:justify-normal">
-        <HoverCard.Root>
-          <HoverCard.Trigger>
-            <Avatar
-              src="https://avatars.githubusercontent.com/u/62759701?v=4"
-              fallback="ss"
-              radius="full"
-              variant="solid"
-            />
-          </HoverCard.Trigger>
-          <HoverCard.Content>
-            <Flex gap="4">
+        {status === "authenticated" && (
+          <HoverCard.Root>
+            <HoverCard.Trigger>
               <Avatar
-                src="https://avatars.githubusercontent.com/u/62759701?v=4"
-                size="5"
-                fallback="ss"
+                src={session?.user?.image!}
+                fallback="?"
                 radius="full"
+                variant="solid"
               />
-              <Box>
-                <Heading size="3" as="h3">
-                  Swapneel Shubham
-                </Heading>
-                <Text as="div" size="2" color="gray">
-                  @swapneel1026
-                </Text>
+            </HoverCard.Trigger>
+            <HoverCard.Content>
+              <Flex gap="4">
+                <Avatar
+                  src={session?.user?.image!}
+                  size="5"
+                  fallback="?"
+                  radius="full"
+                />
+                <Box>
+                  <Heading size="3" as="h3">
+                    {session?.user?.name}
+                  </Heading>
+                  <Text as="div" size="2" color="gray">
+                    {session?.user?.email}
+                  </Text>
 
-                <Text as="div" size="2" style={{ maxWidth: 300 }} mt="3">
-                  I love Next-JS
-                </Text>
-              </Box>
-            </Flex>
-          </HoverCard.Content>
-        </HoverCard.Root>
-        <Button variant="soft">
-          <Link href={"/login"}>Login</Link>
-        </Button>
-        <Button variant="soft">
-          <Link href={"/signup"}>Signup</Link>
-        </Button>
+                  <Text
+                    as="div"
+                    size="2"
+                    style={{ maxWidth: 300 }}
+                    mt="3"
+                    mb={"3"}
+                  >
+                    I love Next-JS
+                  </Text>
+                  <Button variant="soft">
+                    <Link href={"/api/auth/signout"}>Signout</Link>
+                  </Button>
+                </Box>
+              </Flex>
+            </HoverCard.Content>
+          </HoverCard.Root>
+        )}
+        {status === "unauthenticated" && (
+          <Button variant="soft">
+            <Link href={"/api/auth/signin"}>Login</Link>
+          </Button>
+        )}
       </ul>
     </nav>
   );
