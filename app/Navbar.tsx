@@ -14,6 +14,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconContext } from "react-icons";
 import { FaBug } from "react-icons/fa6";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Navbar = () => {
   interface links {
@@ -60,7 +62,7 @@ const Navbar = () => {
       </section>
       <ul className="flex space-x-3 items-center justify-center md:justify-normal">
         {status === "authenticated" && (
-          <Popover.Root >
+          <Popover.Root>
             <Popover.Trigger>
               <Avatar
                 className="cursor-pointer"
@@ -103,10 +105,12 @@ const Navbar = () => {
             </Popover.Content>
           </Popover.Root>
         )}
-        {status === "unauthenticated" && (
+        {status === "unauthenticated" ? (
           <Button variant="soft">
             <Link href={"/api/auth/signin"}>Login</Link>
           </Button>
+        ) : (
+          <Skeleton width={"3rem"} height={"1.5rem"}/>
         )}
       </ul>
     </nav>
