@@ -67,9 +67,11 @@ const Navbar = () => {
               <Avatar
                 className="cursor-pointer"
                 src={session?.user?.image!}
-                fallback="?"
+                loading="lazy"
+                fallback={"?"}
                 radius="full"
                 variant="solid"
+                size={"3"}
               />
             </Popover.Trigger>
             <Popover.Content>
@@ -105,13 +107,12 @@ const Navbar = () => {
             </Popover.Content>
           </Popover.Root>
         )}
-        {status === "unauthenticated" ? (
+        {status === "unauthenticated" && (
           <Button variant="soft">
             <Link href={"/api/auth/signin"}>Login</Link>
           </Button>
-        ) : (
-          <Skeleton width={"3rem"} height={"1.5rem"}/>
         )}
+        {status==="loading"&&<Skeleton width={"3rem"} height={"2.25rem"} />}
       </ul>
     </nav>
   );
