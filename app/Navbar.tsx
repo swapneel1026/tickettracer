@@ -5,7 +5,7 @@ import {
   Button,
   Flex,
   Heading,
-  HoverCard,
+  Popover,
   Text,
 } from "@radix-ui/themes";
 import classnames from "classnames";
@@ -60,16 +60,17 @@ const Navbar = () => {
       </section>
       <ul className="flex space-x-3 items-center justify-center md:justify-normal">
         {status === "authenticated" && (
-          <HoverCard.Root>
-            <HoverCard.Trigger>
+          <Popover.Root >
+            <Popover.Trigger>
               <Avatar
+                className="cursor-pointer"
                 src={session?.user?.image!}
                 fallback="?"
                 radius="full"
                 variant="solid"
               />
-            </HoverCard.Trigger>
-            <HoverCard.Content>
+            </Popover.Trigger>
+            <Popover.Content>
               <Flex gap="4">
                 <Avatar
                   src={session?.user?.image!}
@@ -99,8 +100,8 @@ const Navbar = () => {
                   </Button>
                 </Box>
               </Flex>
-            </HoverCard.Content>
-          </HoverCard.Root>
+            </Popover.Content>
+          </Popover.Root>
         )}
         {status === "unauthenticated" && (
           <Button variant="soft">
