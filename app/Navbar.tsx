@@ -9,7 +9,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import classnames from "classnames";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconContext } from "react-icons";
@@ -29,6 +29,9 @@ const Navbar = () => {
 
   const currentPath = usePathname();
   const { data: session, status } = useSession();
+  const loginWithGoogle = () =>
+    signIn("google", { callbackUrl: "http://localhost:3000" });
+  const logoutWithGoogle = () => signOut();
 
   return (
     <nav className="py-4 px-6 md:flex-row flex-col flex space-y-4 md:space-y-0 md:space-x-2 border-b-2 justify-between fixed top-0 z-10 bg-white w-full">
@@ -99,8 +102,8 @@ const Navbar = () => {
                   >
                     I love Next-JS
                   </Text>
-                  <Button variant="soft">
-                    <Link href={"/api/auth/signout"}>Signout</Link>
+                  <Button variant="soft" onClick={() => logoutWithGoogle()}>
+                    Signout
                   </Button>
                 </Box>
               </Flex>
@@ -108,11 +111,11 @@ const Navbar = () => {
           </Popover.Root>
         )}
         {status === "unauthenticated" && (
-          <Button variant="soft">
-            <Link href={"/api/auth/signin"}>Login</Link>
+          <Button variant="soft" onClick={() => loginWithGoogle()}>
+            Login
           </Button>
         )}
-        {status==="loading"&&<Skeleton width={"3rem"} height={"2.25rem"} />}
+        {status === "loading" && <Skeleton width={"3rem"} height={"2.25rem"} />}
       </ul>
     </nav>
   );
