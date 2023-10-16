@@ -14,6 +14,9 @@ const authHandler= NextAuth({
       ],
       session:{
         strategy:'jwt'
+      },
+      pages:{
+        signIn:"/login"
       }
 })
 
