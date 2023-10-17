@@ -1,13 +1,22 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
 import { Pencil2Icon } from "@radix-ui/react-icons";
-import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  Grid,
+  Heading,
+  Text
+} from "@radix-ui/themes";
 import delay from "delay";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
 import ReactMarkdown from "react-markdown";
 import DeleteButton from "./edit/_components/DeleteButton";
+import Dropdown from "./edit/_components/Dropdown";
 
 interface Props {
   params: { ticketid: string };
@@ -57,7 +66,9 @@ const TicketdescriptionPage = async ({ params }: Props) => {
           <ReactMarkdown>{ticket?.description}</ReactMarkdown>
         </Card>
       </Box>
+
       <Box className="inline-flex space-x-2 justify-center lg:justify-normal">
+      <Dropdown className={"mt-4"}/>
         <Button
           style={{ marginTop: "16px" }}
           disabled={ticket?.status === "CLOSED"}
