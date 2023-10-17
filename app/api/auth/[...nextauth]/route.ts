@@ -15,10 +15,6 @@ const authHandler= NextAuth({
       session:{
         strategy:'jwt'
       },
-      pages:{
-        signIn:"/",
-        signOut:"/"
-      }
 })
 
 export { authHandler as GET, authHandler as POST }
