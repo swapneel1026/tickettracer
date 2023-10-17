@@ -66,7 +66,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       </Box>
 
       <Box className="flex md:flex-col space-x-2 justify-center lg:justify-normal ">
-      <Dropdown className={"mt-4 md:px-2"}/>
+      <Dropdown className={"mt-4 md:px-2"} status={ticket?.status} id={ticket?.id} assignedInfo={ticket?.assignedToUserId}/>
         <EditButton status={ticket?.status} id={ticket?.id}  />
         <DeleteButton id={ticket?.id} />
       </Box>

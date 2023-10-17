@@ -5,7 +5,25 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export default function Dropdown({ className }: { className: string }) {
+type Props = {
+  status: string;
+  id: number;
+  className: string;
+  assignedInfo: string | null;
+};
+export default function Dropdown({
+  status,
+  id,
+  className,
+  assignedInfo,
+}: Props) {
+  const getAssignedInfo = async (userId: string) => {
+    await axios
+      .patch(`/api/tickets/${id}`, {
+        assignedToUserId: userId === "unassigned" ? null : userId,
+      })
+      .then((res) => res.data);
+  };
   const {
     data: users,
     isLoading,
@@ -19,15 +37,22 @@ export default function Dropdown({ className }: { className: string }) {
         .catch((err) => console.log(err));
     },
     retry: 3,
-    refetchIntervalInBackground: true,
-    refetchInterval:10000
+    refetchInterval: 1000,
   });
-  if(isLoading) return <div className={className}><Skeleton width={"7rem"} height={"1.875rem"}/></div>
-  if(error) return null
+  if (isLoading)
+    return (
+      <div className={className}>
+        <Skeleton width={"7rem"} height={"1.875rem"} />
+      </div>
+    );
+  if (error) return null;
   return (
     <div className={className}>
-      <Select.Root defaultValue="unassigned">
-        <Select.Trigger />
+      <Select.Root
+        onValueChange={(userId) => getAssignedInfo(userId)}
+        defaultValue={assignedInfo || ""}
+      >
+        <Select.Trigger placeholder="Assign..." />
         <Select.Content>
           <Select.Group>
             <Select.Item value="unassigned">Unassigned</Select.Item>
