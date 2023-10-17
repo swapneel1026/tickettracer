@@ -3,6 +3,7 @@ import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaTrashCan } from "react-icons/fa6";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,7 +32,8 @@ const DeleteButton = ({ id }: ticketProps) => {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button color="red" disabled={isDeleting} style={{ marginTop: "16px" }}>
+        <Button color="red" disabled={isDeleting} style={{ marginTop: "16px",width:"fit-content" }}>
+          <FaTrashCan/>
           Delete Ticket
           <ClipLoader size={"18px"} color="white" loading={isDeleting} />
         </Button>
