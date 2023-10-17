@@ -2,6 +2,9 @@
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 export default function Dropdown({ className }: { className: string }) {
   const {
     data: users,
@@ -17,9 +20,10 @@ export default function Dropdown({ className }: { className: string }) {
     },
     retry: 3,
     refetchIntervalInBackground: true,
+    refetchInterval:10000
   });
-  console.log(users);
-
+  if(isLoading) return <div className={className}><Skeleton width={"7rem"} height={"1.875rem"}/></div>
+  if(error) return null
   return (
     <div className={className}>
       <Select.Root defaultValue="unassigned">
