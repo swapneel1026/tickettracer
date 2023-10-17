@@ -1,6 +1,5 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
-import { Pencil2Icon } from "@radix-ui/react-icons";
 import {
   Box,
   Button,
@@ -17,6 +16,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import ReactMarkdown from "react-markdown";
 import DeleteButton from "./edit/_components/DeleteButton";
 import Dropdown from "./edit/_components/Dropdown";
+import EditButton from "./edit/_components/EditButton";
 
 interface Props {
   params: { ticketid: string };
@@ -67,24 +67,9 @@ const TicketdescriptionPage = async ({ params }: Props) => {
         </Card>
       </Box>
 
-      <Box className="inline-flex space-x-2 justify-center lg:justify-normal">
-      <Dropdown className={"mt-4"}/>
-        <Button
-          style={{ marginTop: "16px" }}
-          disabled={ticket?.status === "CLOSED"}
-        >
-          <Link
-            href={`/tickets/${ticket?.id}/edit`}
-            className={`flex items-center gap-2 ${
-              ticket?.status === "CLOSED"
-                ? "pointer-events-none"
-                : "pointer-events-auto"
-            }`}
-          >
-            <Pencil2Icon />
-            Edit Ticket
-          </Link>
-        </Button>
+      <Box className="flex md:flex-col space-x-2 justify-center lg:justify-normal ">
+      <Dropdown className={"mt-4 md:px-2"}/>
+        <EditButton status={ticket?.status} id={ticket?.id}  />
         <DeleteButton id={ticket?.id} />
       </Box>
     </Grid>
