@@ -1,9 +1,18 @@
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-const ticketSchema = z.object({
-  title: z.string().min(1, "Title is required").max(255),
-  description: z.string().min(1, "Description is Required"),
+// const ticketSchema = z.object({
+//   title: z.string().min(1, "Title is required").max(255),
+//   description: z.string().min(1, "Description is Required"),
+// });
+const patchTicketSchema = z.object({
+  title: z.string().min(1, "Title is required").max(255).optional(),
+  description: z.string().min(1, "Description is Required").optional(),
+  assignedToUserId: z
+    .string()
+    .min(1, "assignedToUserId is required")
+    .optional()
+    .nullable(),
 });
 
 export async function PATCH(
@@ -11,9 +20,21 @@ export async function PATCH(
   { params }: { params: { ticketid: string } }
 ) {
   const body = await request.json();
-  const validation = ticketSchema.safeParse(body);
+  const validation = patchTicketSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });
+  if (body.assignedToUserId) {
+    const user = await prisma.user.findUnique({
+      where: { id: body.assignedToUserId },
+    });
+    if (!user)
+      return NextResponse.json(
+        { error: "Invalid user" },
+        {
+          status: 400,
+        }
+      );
+  }
   const ticket = await prisma.ticket.findUnique({
     where: { id: parseInt(params.ticketid) },
   });
@@ -24,6 +45,7 @@ export async function PATCH(
     data: {
       title: body.title,
       description: body.description,
+      assignedToUserId:body.assignedToUserId
     },
   });
   return NextResponse.json(updatedTicket, {
