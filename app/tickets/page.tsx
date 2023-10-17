@@ -20,7 +20,7 @@ const TicketsPage = async () => {
                 <Table.ColumnHeaderCell className="hidden md:table-cell">
                   Status
                 </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell >
+                <Table.ColumnHeaderCell className="hidden md:table-cell">
                   Created At
                 </Table.ColumnHeaderCell>
               </Table.Row>
@@ -38,14 +38,14 @@ const TicketsPage = async () => {
                       <span className="block md:hidden mt-2 md:mt-0">
                         <StatusBagde status={ticket.status} />
                       </span>
-                      {/* <span className="block md:hidden mt-2 md:mt-0">
+                      <span className="block md:hidden mt-2 md:mt-0">
                         {ticket.createdAt.toDateString()}
-                      </span> */}
+                      </span>
                     </Table.Cell>
                     <Table.Cell className="hidden md:table-cell ">
                       <StatusBagde status={ticket.status} />
                     </Table.Cell>
-                    <Table.Cell className="table-cell ">
+                    <Table.Cell className="hidden md:table-cell">
                       {ticket.createdAt.toDateString()}
                     </Table.Cell>
                   </Table.Row>
