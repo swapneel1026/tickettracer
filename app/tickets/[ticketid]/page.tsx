@@ -9,7 +9,6 @@ import {
   Heading,
   Text
 } from "@radix-ui/themes";
-import delay from "delay";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -28,7 +27,6 @@ const TicketdescriptionPage = async ({ params }: Props) => {
     where: { id: parseInt(params.ticketid) },
   });
   if (!ticket) notFound();
-  await delay(3000);
 
   return (
     <Grid

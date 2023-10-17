@@ -1,6 +1,5 @@
 import prisma from "@/prisma/client";
 import { Button, Table } from "@radix-ui/themes";
-import delay from "delay";
 import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
 import TicketActionBar from "../components/ticketAction";
@@ -8,7 +7,6 @@ import TicketActionBar from "../components/ticketAction";
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
   const reversedTickets = allTickets.reverse();
-  await delay(500);
 
   return (
     <div className="p-4 max-w-[70rem] mx-auto">
