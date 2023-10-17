@@ -39,7 +39,7 @@ const DeleteButton = ({ id }: ticketProps) => {
         </Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content style={{ maxWidth: 450 }}>
-        <AlertDialog.Title>Revoke access</AlertDialog.Title>
+        <AlertDialog.Title>Delete Ticket</AlertDialog.Title>
         <AlertDialog.Description size="2">
           Are you sure? This ticket will no longer be accessible and you will be
           redirected to all tickets page.
