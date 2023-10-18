@@ -2,6 +2,7 @@
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { toast } from "react-toastify";
@@ -13,6 +14,7 @@ type Props = {
   assignedInfo: any;
 };
 export default function Dropdown({ id, className, assignedInfo }: Props) {
+  const router = useRouter();
   const getAssignedInfo = async (user: any) => {
     const parsedUser = JSON.parse(user);
 
@@ -20,7 +22,10 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
       assignedToUserId: parsedUser.id || null,
       assignedUserName: parsedUser.name || null,
     });
-    toast.success("Assigned to "+ parsedUser.name)
+    toast.success(
+      (parsedUser.name && "Assigned to " + parsedUser.name) || "Unassigned"
+    );
+    router.refresh();
   };
   const {
     data: users,
