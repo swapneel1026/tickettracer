@@ -40,7 +40,7 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
         .catch((err) => console.log(err));
     },
     retry: 3,
-    refetchInterval: 600000,
+    refetchInterval: 10000,
   });
 
   if (isLoading)
