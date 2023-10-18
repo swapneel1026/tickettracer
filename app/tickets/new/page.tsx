@@ -11,5 +11,4 @@ const NewTicketForm = dynamic(
 const NewTicket = () => {
   return <NewTicketForm />;
 };
-
 export default NewTicket;

@@ -78,5 +78,5 @@ const TicketsPage = async () => {
     </div>
   );
 };
-export const revalidate = "force";
+export const dynamic = 'force-dynamic';
 export default TicketsPage;
