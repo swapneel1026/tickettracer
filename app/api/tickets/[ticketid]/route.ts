@@ -13,6 +13,12 @@ const patchTicketSchema = z.object({
     .min(1, "assignedToUserId is required")
     .optional()
     .nullable(),
+    assignedUserName:z
+    .string()
+    .min(1, "assignedUserName is required")
+    .optional()
+    .nullable(),
+    
 });
 
 export async function PATCH(
@@ -20,6 +26,8 @@ export async function PATCH(
   { params }: { params: { ticketid: string } }
 ) {
   const body = await request.json();
+  console.log("body",body);
+  
   const validation = patchTicketSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });
@@ -46,6 +54,7 @@ export async function PATCH(
       title: body.title,
       description: body.description,
       assignedToUserId:body.assignedToUserId,
+      assignedUserName:body.assignedUserName
     },
   });
   return NextResponse.json(updatedTicket, {

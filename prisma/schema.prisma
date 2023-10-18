@@ -18,7 +18,8 @@ model Ticket {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   assignedToUserId String?  @db.VarChar(255)
-  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+  assignedToUser   User?    @relation("UserToTickets", fields: [assignedToUserId], references: [id])
+  assignedUserName String?
 }
 
 enum Status {
@@ -62,7 +63,7 @@ model User {
   image           String?
   accounts        Account[]
   sessions        Session[]
-  assignedTickets Ticket[]  
+  assignedTickets Ticket[]  @relation("UserToTickets")
 }
 
 model VerificationToken {

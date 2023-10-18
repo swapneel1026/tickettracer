@@ -1,14 +1,6 @@
 import StatusBagde from "@/app/components/StatusBagde";
 import prisma from "@/prisma/client";
-import {
-  Box,
-  Button,
-  Card,
-  Flex,
-  Grid,
-  Heading,
-  Text
-} from "@radix-ui/themes";
+import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -66,8 +58,13 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       </Box>
 
       <Box className="flex md:flex-col space-x-2 justify-center lg:justify-normal ">
-      <Dropdown className={"mt-4 md:px-2"} status={ticket?.status} id={ticket?.id} assignedInfo={ticket?.assignedToUserId}/>
-        <EditButton status={ticket?.status} id={ticket?.id}  />
+        <Dropdown
+          className={"mt-4 md:px-2"}
+          status={ticket?.status}
+          id={ticket?.id}
+          assignedInfo={ticket}
+        />
+        <EditButton status={ticket?.status} id={ticket?.id} />
         <DeleteButton id={ticket?.id} />
       </Box>
     </Grid>

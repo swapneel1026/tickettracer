@@ -7,6 +7,8 @@ import TicketActionBar from "../components/ticketAction";
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
   const reversedTickets = allTickets.reverse();
+  // console.log(reversedTickets);
+  
 
   return (
     <div className="p-4 max-w-[70rem] mx-auto">

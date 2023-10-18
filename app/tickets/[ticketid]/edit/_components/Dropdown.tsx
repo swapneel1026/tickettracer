@@ -6,23 +6,19 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
-  status: string;
+  status?: string;
   id: number;
   className: string;
-  assignedInfo: string | null;
+  assignedInfo: any;
 };
-export default function Dropdown({
-  status,
-  id,
-  className,
-  assignedInfo,
-}: Props) {
-  const getAssignedInfo = async (userId: string) => {
-    await axios
-      .patch(`/api/tickets/${id}`, {
-        assignedToUserId: userId === "unassigned" ? null : userId,
-      })
-      .then((res) => res.data);
+export default function Dropdown({ id, className, assignedInfo }: Props) {
+  const getAssignedInfo = async (user: any) => {
+    const parsedUser = JSON.parse(user);
+
+    await axios.patch(`/api/tickets/${id}`, {
+      assignedToUserId: parsedUser.id || null,
+      assignedUserName: parsedUser.name || null,
+    });
   };
   const {
     data: users,
@@ -37,8 +33,9 @@ export default function Dropdown({
         .catch((err) => console.log(err));
     },
     retry: 3,
-    refetchInterval: 1000,
+    refetchInterval: 3000,
   });
+
   if (isLoading)
     return (
       <div className={className}>
@@ -49,15 +46,25 @@ export default function Dropdown({
   return (
     <div className={className}>
       <Select.Root
-        onValueChange={(userId) => getAssignedInfo(userId)}
-        defaultValue={assignedInfo || ""}
+        onValueChange={getAssignedInfo}
+        defaultValue={
+          JSON.stringify({
+            id: assignedInfo.assignedToUserId,
+            name: assignedInfo.assignedUserName,
+          }) || JSON.stringify({ id: null, name: null })
+        }
       >
         <Select.Trigger placeholder="Assign..." />
         <Select.Content>
           <Select.Group>
-            <Select.Item value="unassigned">Unassigned</Select.Item>
-            {users?.map((user) => (
-              <Select.Item key={user.id} value={user.id}>
+            <Select.Item value={JSON.stringify({ id: null, name: null })}>
+              Unassigned
+            </Select.Item>
+            {users?.map((user: any) => (
+              <Select.Item
+                key={user.id}
+                value={JSON.stringify({ id: user.id, name: user.name })}
+              >
                 {user.name}
               </Select.Item>
             ))}
