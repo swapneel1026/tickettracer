@@ -8,7 +8,6 @@ const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
   const reversedTickets = allTickets.reverse();
   // console.log(reversedTickets);
-  
 
   return (
     <div className="p-4 max-w-[70rem] mx-auto">
@@ -22,9 +21,10 @@ const TicketsPage = async () => {
                 <Table.ColumnHeaderCell className="hidden md:table-cell">
                   Status
                 </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell >
+                <Table.ColumnHeaderCell className="hidden md:table-cell">
                   Created At
                 </Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Assigned To</Table.ColumnHeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -40,15 +40,20 @@ const TicketsPage = async () => {
                       <span className="block md:hidden mt-2 md:mt-0">
                         <StatusBagde status={ticket.status} />
                       </span>
-                      {/* <span className="block md:hidden mt-2 md:mt-0">
+                      <span className="block md:hidden mt-2 md:mt-0">
                         {ticket.createdAt.toDateString()}
-                      </span> */}
+                      </span>
                     </Table.Cell>
                     <Table.Cell className="hidden md:table-cell ">
                       <StatusBagde status={ticket.status} />
                     </Table.Cell>
-                    <Table.Cell className="table-cell ">
+                    <Table.Cell className="md:table-cell hidden ">
                       {ticket.createdAt.toDateString()}
+                    </Table.Cell>
+                    <Table.Cell className="table-cell">
+                      <span className="block mt-8 md:mt-0 font-semibold">
+                        {ticket.assignedUserName||"Unassigned"}
+                      </span>
                     </Table.Cell>
                   </Table.Row>
                 );
