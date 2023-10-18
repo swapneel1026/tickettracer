@@ -3,6 +3,7 @@ import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./Navbar";
 import QueryClientProvider from "./QueryClientProvider";
 import AuthProvider from "./auth/Provider";
