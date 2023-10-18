@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 type Props = {
   status?: string;
   id: number;
-  className: string;
+  className?: string;
   assignedInfo: any;
 };
 export default function Dropdown({ id, className, assignedInfo }: Props) {

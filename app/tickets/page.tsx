@@ -3,6 +3,7 @@ import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
 import TicketActionBar from "../components/ticketAction";
+import Dropdown from "./[ticketid]/edit/_components/Dropdown";
 
 const TicketsPage = async () => {
   const allTickets = await prisma.ticket.findMany();
@@ -51,9 +52,14 @@ const TicketsPage = async () => {
                       {ticket.createdAt.toDateString()}
                     </Table.Cell>
                     <Table.Cell className="table-cell">
-                      <span className="block mt-8 md:mt-0 font-semibold">
+                      {/* <span className={`${ticket.assignedUserName?"text-green-600":"text-red-500"} block mt-8 md:mt-0 font-semibold`}>
                         {ticket.assignedUserName||"Unassigned"}
-                      </span>
+                      </span> */}
+                      <Dropdown
+                        status={ticket?.status}
+                        id={ticket?.id}
+                        assignedInfo={ticket}
+                      />
                     </Table.Cell>
                   </Table.Row>
                 );
