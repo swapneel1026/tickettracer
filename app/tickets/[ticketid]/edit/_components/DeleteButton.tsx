@@ -32,7 +32,7 @@ const DeleteButton = ({ id }: ticketProps) => {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button color="red" disabled={isDeleting} style={{ marginTop: "16px",width:"fit-content" }}>
+        <Button className="text-red-500" disabled={isDeleting} style={{ marginTop: "16px",width:"fit-content" }}>
           <FaTrashCan/>
           Delete Ticket
           <ClipLoader size={"18px"} color="white" loading={isDeleting} />
@@ -53,8 +53,7 @@ const DeleteButton = ({ id }: ticketProps) => {
           </AlertDialog.Cancel>
           <AlertDialog.Action>
             <Button
-              variant="solid"
-              color="red"
+              color='red'
               onClick={() => ticketdelete(id)}
             >
               Delete Ticket
