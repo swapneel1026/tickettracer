@@ -21,6 +21,8 @@ model Ticket {
   assignedToUserId String?  @db.VarChar(255)
   assignedToUser   User?    @relation("UserToTickets", fields: [assignedToUserId], references: [id])
   assignedUserName String?
+
+  @@index([assignedToUserId])
 }
 
 enum Status {
