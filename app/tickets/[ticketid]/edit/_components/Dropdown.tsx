@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { toast } from "react-toastify";
 
 type Props = {
   status?: string;
@@ -19,6 +20,7 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
       assignedToUserId: parsedUser.id || null,
       assignedUserName: parsedUser.name || null,
     });
+    toast.success("Assigned to "+ parsedUser.name)
   };
   const {
     data: users,
@@ -33,7 +35,7 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
         .catch((err) => console.log(err));
     },
     retry: 3,
-    refetchInterval: 3000,
+    refetchInterval: 600000,
   });
 
   if (isLoading)
