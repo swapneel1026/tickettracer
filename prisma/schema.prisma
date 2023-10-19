@@ -17,7 +17,7 @@ model Ticket {
   description      String   @db.Text
   status           Status   @default(OPEN)
   createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  updatedAt        DateTime @default(now()) 
   assignedToUserId String?  @db.VarChar(255)
   assignedToUser   User?    @relation("UserToTickets", fields: [assignedToUserId], references: [id])
   assignedUserName String?
