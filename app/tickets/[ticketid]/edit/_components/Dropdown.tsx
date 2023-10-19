@@ -81,3 +81,4 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
     </div>
   );
 }
+export const dynamic="force-dynamic"
