@@ -24,4 +24,3 @@ export async function POST(request: NextRequest) {
     statusText: "New ticket generated",
   });
 }
-export const dynamic = 'force-dynamic'

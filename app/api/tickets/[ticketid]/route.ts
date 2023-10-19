@@ -81,4 +81,3 @@ export async function DELETE(
     { status: 200, statusText: "Ticket deleted successfully" }
   );
 }
-export const dynamic = 'force-dynamic'
