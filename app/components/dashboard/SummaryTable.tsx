@@ -5,7 +5,7 @@ import StatusBagde from "../StatusBagde";
 
 const SummaryTable = async () => {
   const allTickets = await prisma.ticket.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: { updatedAt: "asc" },
     take: 5,
     include: {
       assignedToUser: true,
