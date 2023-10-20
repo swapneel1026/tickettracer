@@ -12,7 +12,7 @@ const SummaryTable = async () => {
     },
   });
   return (
-    <div>
+    <div className="py-4">
       <h1 className="p-4 font-extrabold md:text-xl text-blue-400">Latest Tickets</h1>
 
       <Table.Root variant="surface" className="mt-4">
