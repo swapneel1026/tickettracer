@@ -1,28 +1,15 @@
-import prisma from "@/prisma/client";
 import { Box, Flex } from "@radix-ui/themes";
-import StatusCountBox from "./components/dashboard/StatusCountBox";
+import StatusSummary from "./components/dashboard/StatusSummary";
 
-export default async function Home() {
-  const openTicketCount = await prisma.ticket.count({ where: { status: "OPEN" } });
-  const closedTicketCount = await  prisma.ticket.count({
-    where: { status: "CLOSED" },
-  });
-  const progressTicketCount =await prisma.ticket.count({
-    where: { status: "IN_PROGRESS" },
-  });
-
-  console.log(openTicketCount, closedTicketCount, progressTicketCount);
-
+export default function Home() {
   return (
     <main className="">
       <Box>
         <Flex align="center" gap="4">
-          <StatusCountBox ticketTitle="Open" numberofTickets={openTicketCount} />
-          <StatusCountBox numberofTickets={closedTicketCount} ticketTitle="Closed" />
-          <StatusCountBox ticketTitle="In-Progress" numberofTickets={progressTicketCount} />
+          <StatusSummary />
         </Flex>
       </Box>
     </main>
   );
 }
-export const dynamic = 'force-dynamic'; 
+export const dynamic = "force-dynamic";
