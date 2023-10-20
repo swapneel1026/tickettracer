@@ -10,7 +10,7 @@ type Props = {
 const StatusCountBox = ({ ticketTitle, numberofTickets, isLoading }: Props) => {
   if (isLoading)
     return (
-      <Card style={{ maxWidth: 240, height: 140, minWidth: 200 }}>
+      <Card style={{ maxWidth: 240, minWidth: 200, padding: "0.625rem" }}>
         <h1>
           <Skeleton height={"1.5rem"} />
         </h1>
