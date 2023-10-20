@@ -20,10 +20,20 @@ const StatusCountBox = ({ ticketTitle, numberofTickets, isLoading }: Props) => {
       </Card>
     );
   return (
-    <Card style={{ maxWidth: 240, height: 140, minWidth: 200 }}>
+    <Card style={{ maxWidth: 240, minWidth: 200, padding: "0.625rem" }}>
       <Flex gap="3" align="center" direction={"column"} justify={"center"}>
-        <h1 className="text-lg font-semibold">{ticketTitle} Tickets</h1>
-        <p>{numberofTickets}</p>
+        <h1 className="text-lg font-medium ">{ticketTitle} Tickets</h1>
+        <p
+          className={`text-5xl font-semibold ${
+            ticketTitle === "Open"
+              ? "text-red-500"
+              : ticketTitle === "Closed"
+              ? "text-green-600"
+              : "text-purple-600"
+          } `}
+        >
+          {numberofTickets}
+        </p>
       </Flex>
     </Card>
   );
