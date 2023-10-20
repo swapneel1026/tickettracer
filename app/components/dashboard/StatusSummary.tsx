@@ -21,7 +21,6 @@ export default function StatusSummary() {
     staleTime: 6000 * 10,
     refetchInterval: 30000,
     refetchOnWindowFocus: true,
-    refetchOnMount: true,
   });
   return (
     <>
