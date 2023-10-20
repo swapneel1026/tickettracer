@@ -5,7 +5,7 @@ import StatusBagde from "../StatusBagde";
 
 const SummaryTable = async () => {
   const allTickets = await prisma.ticket.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: { updatedAt: "asc" },
     take: 5,
     include: {
       assignedToUser: true,
@@ -13,7 +13,7 @@ const SummaryTable = async () => {
   });
   return (
     <div className="py-4">
-      <h1 className="p-4 font-extrabold md:text-xl text-blue-400">Latest Tickets</h1>
+      <h1 className="p-4 font-extrabold md:text-xl text-blue-400">Latest Tickets Updates</h1>
 
       <Table.Root variant="surface" className="mt-4">
         <Table.Header>
