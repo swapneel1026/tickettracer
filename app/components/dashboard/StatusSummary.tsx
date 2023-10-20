@@ -1,4 +1,5 @@
 "use client";
+import { Grid } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import StatusCountBox from "./StatusCountBox";
@@ -20,25 +21,27 @@ export default function StatusSummary() {
     staleTime: 6000 * 10,
     refetchInterval: 30000,
     refetchOnWindowFocus: true,
-    refetchOnMount: true,
   });
   return (
     <>
-      <StatusCountBox
-        ticketTitle="Open"
-        numberofTickets={status?.openTicketcount}
-        isLoading={isLoading}
-      />
-      <StatusCountBox
-        numberofTickets={status?.closedTicketcount}
-        ticketTitle="Closed"
-        isLoading={isLoading}
-      />
-      <StatusCountBox
-        ticketTitle="In-Progress"
-        numberofTickets={status?.inProgressTicketcount}
-        isLoading={isLoading}
-      />
+    <h1 className="font-extrabold md:text-xl text-blue-400 p-4">Summary</h1>
+      <Grid className="mx-auto" columns={{initial:"1",md:"3"}} gap={{initial:"5",md:"7"}}>
+        <StatusCountBox
+          ticketTitle="Open"
+          numberofTickets={status?.openTicketcount}
+          isLoading={isLoading}
+        />
+        <StatusCountBox
+          numberofTickets={status?.closedTicketcount}
+          ticketTitle="Closed"
+          isLoading={isLoading}
+        />
+        <StatusCountBox
+          ticketTitle="Progress"
+          numberofTickets={status?.inProgressTicketcount}
+          isLoading={isLoading}
+        />
+      </Grid>
     </>
   );
 }
