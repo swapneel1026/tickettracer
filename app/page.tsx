@@ -5,7 +5,7 @@ import SummaryTable from "./components/dashboard/SummaryTable";
 
 export default async function Home() {
   return (
-    <Grid columns={{ initial: "1", md: "2" }} gap="5" className="p-4">
+    <Grid columns={{ initial: "1", md: "2" }} gap="9" className="p-4">
       <Flex direction="column" gap="6">
         <StatusSummary />
         <Barchart />
