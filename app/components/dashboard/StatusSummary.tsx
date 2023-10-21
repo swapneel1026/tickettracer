@@ -2,6 +2,7 @@
 import { Grid } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import ToolTip from "../ToolTip";
 import StatusCountBox from "./StatusCountBox";
 
 export default function StatusSummary() {
@@ -24,7 +25,7 @@ export default function StatusSummary() {
   });
   return (
     <>
-    <h1 className="font-extrabold md:text-xl text-blue-400 p-4">Summary</h1>
+    <h1 className="font-extrabold md:text-xl text-blue-400 p-4 inline-flex items-center gap-2">Summary <span><ToolTip toolTipText="this is the ticket status summary"/></span></h1>
       <Grid className="mx-auto" columns={{initial:"1",md:"3"}} gap={{initial:"5",md:"7"}}>
         <StatusCountBox
           ticketTitle="Open"

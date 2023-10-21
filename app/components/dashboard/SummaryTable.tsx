@@ -1,19 +1,19 @@
 import prisma from "@/prisma/client";
-import { Avatar, Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
+import { Avatar, Table, Text } from "@radix-ui/themes";
 import StatusBagde from "../StatusBagde";
+import ToolTip from "../ToolTip";
 
 const SummaryTable = async () => {
   const allTickets = await prisma.ticket.findMany({
-    orderBy: { updatedAt: "asc" },
+    orderBy: { updatedAt:'desc' },
     take: 5,
     include: {
-      assignedToUser: true,
+      assignedToUser:true
     },
   });
   return (
     <div className="py-4">
-      <h1 className="p-4 font-extrabold md:text-xl text-blue-400">Latest Tickets Updates</h1>
+      <h1 className="mt-8 font-extrabold md:text-xl text-blue-400 inline-flex items-center gap-2">Latest Tickets Updates <span><ToolTip toolTipText="Here you get the ticket updates when changed"/></span></h1>
 
       <Table.Root variant="surface" className="mt-4">
         <Table.Header>
@@ -30,9 +30,9 @@ const SummaryTable = async () => {
             return (
               <Table.Row key={ticket.id}>
                 <Table.Cell className="font-semibold text-md cursor-pointer">
-                  <Button variant="soft" className="capitalize">
-                    <Link href={`tickets/${ticket.id}`}>{ticket.title}</Link>
-                  </Button>
+                  <Text  className="capitalize text-blue-500 ">
+                    {ticket.title}
+                  </Text>
                 </Table.Cell>
                 <Table.Cell className="hidden md:table-cell">
                   <StatusBagde status={ticket.status} />
@@ -55,3 +55,6 @@ const SummaryTable = async () => {
 };
 
 export default SummaryTable;
+export const dynamic = 'force-dynamic';
+
+

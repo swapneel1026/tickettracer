@@ -13,12 +13,11 @@ const patchTicketSchema = z.object({
     .min(1, "assignedToUserId is required")
     .optional()
     .nullable(),
-    assignedUserName:z
+  assignedUserName: z
     .string()
     .min(1, "assignedUserName is required")
     .optional()
     .nullable(),
-    
 });
 
 export async function PATCH(
@@ -26,8 +25,13 @@ export async function PATCH(
   { params }: { params: { ticketid: string } }
 ) {
   const body = await request.json();
-  console.log("body",body);
-  
+  function getCurrentTimestamp() {
+    const now = new Date();
+    return now.toISOString();
+  }
+
+  const timestamp = getCurrentTimestamp();
+
   const validation = patchTicketSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });
@@ -53,8 +57,9 @@ export async function PATCH(
     data: {
       title: body.title,
       description: body.description,
-      assignedToUserId:body.assignedToUserId,
-      assignedUserName:body.assignedUserName
+      assignedToUserId: body.assignedToUserId,
+      assignedUserName: body.assignedUserName,
+      updatedAt: timestamp.toString(),
     },
   });
   return NextResponse.json(updatedTicket, {
@@ -81,4 +86,4 @@ export async function DELETE(
     { status: 200, statusText: "Ticket deleted successfully" }
   );
 }
-export const dynamic="force-dynamic"
+export const dynamic = "force-dynamic";

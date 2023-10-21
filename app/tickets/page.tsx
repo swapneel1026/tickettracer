@@ -6,9 +6,9 @@ import TicketActionBar from "../components/ticketAction";
 import Dropdown from "./[ticketid]/edit/_components/Dropdown";
 
 const TicketsPage = async () => {
-  const allTickets = await prisma.ticket.findMany();
-  const reversedTickets = allTickets.reverse();
-  // console.log(reversedTickets);
+  const allTickets = await prisma.ticket.findMany({
+    orderBy:{createdAt:'desc'}
+  });
 
   return (
     <div className="p-4 max-w-[70rem] mx-auto">
@@ -29,7 +29,7 @@ const TicketsPage = async () => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {reversedTickets?.map((ticket) => {
+              {allTickets?.map((ticket) => {
                 return (
                   <Table.Row key={ticket.id}>
                     <Table.Cell className="font-semibold text-md cursor-pointer">

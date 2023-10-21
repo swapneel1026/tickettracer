@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import ToolTip from "../ToolTip";
 
 export default function Barchart() {
   interface Props {
@@ -11,8 +12,6 @@ export default function Barchart() {
   }
   const {
     data: status,
-    isLoading,
-    error,
   } = useQuery<any>({
     queryKey: ["status"],
     queryFn: () => {
@@ -34,8 +33,8 @@ export default function Barchart() {
   ];
 
   return (
-    <div style={{ width: "100%", height: 300 }} className="">
-        <h1 className="font-extrabold md:text-xl p-4 text-blue-400">Bar-Chart Summary</h1>
+    <div style={{ width: "100%", height: 300 }} >
+        <h1 className="font-extrabold md:text-xl p-4 text-blue-400 inline-flex gap-2 items-center">Bar-Chart Summary <span><ToolTip toolTipText="This represents the status of ticket"/></span></h1>
       <ResponsiveContainer width={"100%"}>
         <BarChart
           data={data}
