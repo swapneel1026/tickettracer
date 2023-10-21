@@ -4,8 +4,8 @@ import StatusBagde from "../StatusBagde";
 
 const SummaryTable = async () => {
   const allTickets = await prisma.ticket.findMany({
-    orderBy: { createdAt:'desc' },
-    take: 8,
+    orderBy: { updatedAt:'desc' },
+    take: 5,
     include: {
       assignedToUser:true
     },
@@ -54,4 +54,6 @@ const SummaryTable = async () => {
 };
 
 export default SummaryTable;
+export const dynamic = 'force-dynamic';
+
 
