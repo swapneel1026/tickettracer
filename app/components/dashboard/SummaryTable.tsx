@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { Avatar, Table, Text } from "@radix-ui/themes";
 import StatusBagde from "../StatusBagde";
+import ToolTip from "../ToolTip";
 
 const SummaryTable = async () => {
   const allTickets = await prisma.ticket.findMany({
@@ -12,7 +13,7 @@ const SummaryTable = async () => {
   });
   return (
     <div className="py-4">
-      <h1 className="mt-8 font-extrabold md:text-xl text-blue-400">Latest Tickets Updates</h1>
+      <h1 className="mt-8 font-extrabold md:text-xl text-blue-400 inline-flex items-center gap-2">Latest Tickets Updates <span><ToolTip toolTipText="Here you get the ticket updates when changed"/></span></h1>
 
       <Table.Root variant="surface" className="mt-4">
         <Table.Header>
