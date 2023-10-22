@@ -10,7 +10,7 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
 
   const allTickets = await prisma.ticket.findMany({
     where: {
-      status: statusfromParams !== "All" ? statusfromParams : undefined,
+      status: statusfromParams ,
     },
     orderBy: { createdAt: "desc" },
   });

@@ -1,5 +1,4 @@
 "use client";
-import { Status } from "@prisma/client";
 import { Button, Flex, Select } from "@radix-ui/themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,11 +7,11 @@ export default function TicketActionBar() {
   const router=useRouter()
   return (
     <Flex justify={"between"}>
-      <Select.Root onValueChange={(status:Status)=>{
-        const query=status?`?status=${status}`:""
+      <Select.Root defaultValue="All" onValueChange={(status)=>{
+        const query=status!=="All"?`?status=${status}`:""
         router.push(`tickets${query}`)
       }}>
-        <Select.Trigger placeholder="Sort by Status" />
+        <Select.Trigger placeholder="Sort by Status"/>
         <Select.Content>
           <Select.Group>
             <Select.Item value={"All"}>
