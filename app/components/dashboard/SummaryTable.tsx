@@ -29,7 +29,7 @@ const SummaryTable = async () => {
           {allTickets?.map((ticket) => {
             return (
               <Table.Row key={ticket.id}>
-                <Table.Cell className="font-semibold text-md cursor-pointer">
+                <Table.Cell className="font-semibold text-md ">
                   <Text  className="capitalize text-blue-500 ">
                     {ticket.title}
                   </Text>
