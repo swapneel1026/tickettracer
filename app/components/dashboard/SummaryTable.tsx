@@ -13,7 +13,7 @@ const SummaryTable = async () => {
   });
   return (
     <div className="py-4">
-      <h1 className="mt-8 font-extrabold md:text-xl text-blue-400 inline-flex items-center gap-2">Latest Tickets Updates <span className="hidden md:block"><ToolTip toolTipText="Here you get the ticket updates when changed"/></span></h1>
+      <h1 className="mt-8 md:mt-0 font-extrabold md:text-xl text-blue-400 inline-flex items-center gap-2">Latest Tickets Updates <span className="hidden md:block"><ToolTip toolTipText="Here you get the ticket updates when changed"/></span></h1>
 
       <Table.Root variant="surface" className="mt-4">
         <Table.Header>
@@ -29,7 +29,7 @@ const SummaryTable = async () => {
           {allTickets?.map((ticket) => {
             return (
               <Table.Row key={ticket.id}>
-                <Table.Cell className="font-semibold text-md cursor-pointer">
+                <Table.Cell className="font-semibold text-md ">
                   <Text  className="capitalize text-blue-500 ">
                     {ticket.title}
                   </Text>

@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaTrashCan } from "react-icons/fa6";
 import { ClipLoader } from "react-spinners";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 
 type ticketProps = {
   id?: number;
@@ -19,9 +18,7 @@ const DeleteButton = ({ id }: ticketProps) => {
     try {
       setdeleting(true)
        await axios.delete(`/api/tickets/${id}`);
-      toast.success(`Ticket with successfully deleted`, {
-        theme: "light",
-      });
+      toast.success(`Ticket successfully deleted`);
       router.push("/tickets");
       router.refresh();
     } catch (error:any) {

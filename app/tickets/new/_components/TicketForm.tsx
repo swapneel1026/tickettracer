@@ -10,8 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
 import SimpleMDE from "react-simplemde-editor";
 import { ClipLoader } from "react-spinners";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 // disabling ssr using dynamic from next/dynamic
 // const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
 //   ssr: false,
@@ -40,23 +39,17 @@ const NewTicketForm = ({ ticket }: Props) => {
       if (ticket) {
         setProgress(true)
         await axios.patch(`/api/tickets/${ticket?.id}`, data);
-        toast.success("Ticket successfully updated", {
-          theme: "light",
-        });
+        toast.success("Ticket successfully updated");
       } else {
         setProgress(true)
         await axios.post("/api/tickets", data);
-        toast.success("Ticket successfully created", {
-          theme: "light",
-        });
+        toast.success("Ticket successfully created");
       }
       router.push("/tickets");
       router.refresh();
     } catch (error) {
       setProgress(false)
-      toast.error("Unexpected Error Occured", {
-        theme: "light",
-      });
+      toast.error("Unexpected Error Occured");
     }
   };
 

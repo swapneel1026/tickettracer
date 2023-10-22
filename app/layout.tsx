@@ -2,8 +2,7 @@ import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from "sonner";
 import Navbar from "./Navbar";
 import QueryClientProvider from "./QueryClientProvider";
 import AuthProvider from "./auth/Provider";
@@ -28,10 +27,8 @@ export default function RootLayout({
           <body className={`${inter.className} scrollbar-hide scroll-smooth`}>
             <Theme>
               <Navbar />
-              <main className="mt-32 md:mt-20 ">
-                <ToastContainer />
-                {children}
-              </main>
+              <Toaster position="top-right" dir="auto" theme="light" />
+              <main className="mt-32 md:mt-20 ">{children}</main>
             </Theme>
           </body>
         </AuthProvider>
@@ -39,4 +36,4 @@ export default function RootLayout({
     </html>
   );
 }
-export const dynamic = 'force-dynamic'; 
+export const dynamic = "force-dynamic";
