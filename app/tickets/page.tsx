@@ -5,9 +5,14 @@ import StatusBagde from "../components/StatusBagde";
 import TicketActionBar from "../components/ticketAction";
 import Dropdown from "./[ticketid]/edit/_components/Dropdown";
 
-const TicketsPage = async () => {
+const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
+  const statusfromParams = searchParams.status;
+
   const allTickets = await prisma.ticket.findMany({
-    orderBy:{createdAt:'desc'}
+    where: {
+      status: statusfromParams ,
+    },
+    orderBy: { createdAt: "desc" },
   });
 
   return (
@@ -52,9 +57,6 @@ const TicketsPage = async () => {
                       {ticket.createdAt.toDateString()}
                     </Table.Cell>
                     <Table.Cell className="table-cell">
-                      {/* <span className={`${ticket.assignedUserName?"text-green-600":"text-red-500"} block mt-8 md:mt-0 font-semibold`}>
-                        {ticket.assignedUserName||"Unassigned"}
-                      </span> */}
                       <Dropdown
                         status={ticket?.status}
                         id={ticket?.id}
@@ -78,5 +80,5 @@ const TicketsPage = async () => {
     </div>
   );
 };
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export default TicketsPage;
