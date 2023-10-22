@@ -9,9 +9,6 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
   const statusfromParams = searchParams.status;
 
   const allTickets = await prisma.ticket.findMany({
-    where: {
-      status: statusfromParams ,
-    },
     orderBy: { createdAt: "desc" },
   });
 
