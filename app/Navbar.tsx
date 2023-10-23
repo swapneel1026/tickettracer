@@ -23,7 +23,8 @@ const Navbar = () => {
     href: string;
   }
   const links: links[] = [
-    { name: "Dashboard", href: "/" },
+    { name: "Home", href: "/" },
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Tickets", href: "/tickets" },
   ];
 
