@@ -26,7 +26,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       columns={{ initial: "1", md: "2" }}
     >
       <Box>
-        <Button style={{ margin: "16px" }}>
+        <Button asChild style={{ margin: "16px" }}>
           <Link href={"/tickets"}>
             <Flex
               direction={"row"}

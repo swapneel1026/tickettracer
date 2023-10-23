@@ -37,7 +37,7 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
                 return (
                   <Table.Row key={ticket.id}>
                     <Table.Cell className="font-semibold text-md cursor-pointer">
-                      <Button variant="soft" className="capitalize">
+                      <Button asChild variant="soft" className="capitalize">
                         <Link href={`tickets/${ticket.id}`}>
                           {ticket.title}
                         </Link>
@@ -71,7 +71,7 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
       ) : (
         <section className="flex place-content-center place-items-center space-x-2 mt-32">
           <p className="text-3xl font-bold">No data to show.</p>
-          <Button>
+          <Button asChild>
             <Link href="/tickets/new">Add new ticket here</Link>
           </Button>
         </section>
