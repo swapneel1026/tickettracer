@@ -1,7 +1,8 @@
 "use client";
-import { Button, Flex, Select } from "@radix-ui/themes";
+import { Box, Button, Flex, Select } from "@radix-ui/themes";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import ToolTip from "./ToolTip";
 
 export default function TicketActionBar() {
   const router = useRouter();
@@ -10,11 +11,12 @@ export default function TicketActionBar() {
 
   return (
     <Flex justify={"between"}>
+      <Box className="inline-flex items-center gap-2">
       <Select.Root
         defaultValue={
           typeof searchParams === "string" && status?.includes(searchParams)
-            ? searchParams
-            : "All"
+          ? searchParams
+          : "All"
         }
         onValueChange={(status) => {
           const query = status !== "All" ? `?status=${status}` : "";
@@ -31,6 +33,8 @@ export default function TicketActionBar() {
           </Select.Group>
         </Select.Content>
       </Select.Root>
+        <ToolTip toolTipText="Sorts according to status"/>
+      </Box>
       <Button onClick={(e) => e.preventDefault()}>
         <Link href={"/tickets/new"}>Add new Ticket</Link>
       </Button>
