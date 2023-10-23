@@ -2,7 +2,7 @@ import { Button, Table } from "@radix-ui/themes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 const loading = () => {
-  const allTickets=[1,2,3,4,5,6]
+  const allTickets=[1,2,3,4,5]
   return (
     <div className="p-4 max-w-[70rem] mx-auto">
        <Button >
