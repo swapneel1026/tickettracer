@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import { Status } from "@prisma/client";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import StatusBagde from "../components/StatusBagde";
@@ -9,6 +10,7 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
   const statusfromParams = searchParams.status;
 
   const allTickets = await prisma.ticket.findMany({
+    where:{status:Status.hasOwnProperty(statusfromParams)?statusfromParams:undefined},
     orderBy: { createdAt: "desc" },
   });
 

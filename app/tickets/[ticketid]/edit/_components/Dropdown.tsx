@@ -40,7 +40,7 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
         .catch((err) => console.log(err));
     },
     retry: 3,
-    staleTime:6000*10,
+    staleTime: 6000 * 10,
     refetchInterval: 10000,
   });
 
@@ -54,6 +54,7 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
   return (
     <div className={className}>
       <Select.Root
+        key={assignedInfo.id}
         onValueChange={getAssignedInfo}
         defaultValue={
           JSON.stringify({
@@ -82,4 +83,4 @@ export default function Dropdown({ id, className, assignedInfo }: Props) {
     </div>
   );
 }
-export const dynamic="force-dynamic"
+export const dynamic = "force-dynamic";
