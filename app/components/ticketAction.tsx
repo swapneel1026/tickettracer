@@ -33,8 +33,8 @@ export default function TicketActionBar() {
           </Select.Group>
         </Select.Content>
       </Select.Root>
-        <ToolTip toolTipText="Sorts according to status"/>
-      </Box>
+        <span className="hidden sm:block"><ToolTip toolTipText="this is the ticket status summary"/></span>
+        </Box>
       <Button onClick={(e) => e.preventDefault()}>
         <Link href={"/tickets/new"}>Add new Ticket</Link>
       </Button>
