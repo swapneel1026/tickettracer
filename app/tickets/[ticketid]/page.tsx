@@ -26,7 +26,7 @@ const TicketdescriptionPage = async ({ params }: Props) => {
       columns={{ initial: "1", md: "2" }}
     >
       <Box>
-        <Button style={{ margin: "16px" }}>
+        <Button asChild style={{ margin: "16px" }}>
           <Link href={"/tickets"}>
             <Flex
               direction={"row"}
@@ -57,9 +57,9 @@ const TicketdescriptionPage = async ({ params }: Props) => {
         </Card>
       </Box>
 
-      <Box className="flex md:flex-col space-x-2 justify-center lg:justify-normal ">
+      <Box className="flex-col space-x-2 justify-center md:justify-normal ">
         <Dropdown
-          className={"mt-4 md:px-2"}
+          className={"mt-4 px-2"}
           status={ticket?.status}
           id={ticket?.id}
           assignedInfo={ticket}
