@@ -1,10 +1,10 @@
-import { Box, Button, Flex } from "@radix-ui/themes";
+import { Box, Button, Container, Flex } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCheckDouble } from "react-icons/fa6";
 
 const Welcome = () => {
-  const construction = true;
+  const construction = false;
   return !construction ? (
     <Flex
       direction={"row"}
@@ -12,7 +12,17 @@ const Welcome = () => {
       gap={"4"}
       className="bg-blue-200 h-screen"
     >
-      <Box className="border-2 w-1/2 p-6"></Box>
+      <Box className="border-2 w-1/2 p-6">
+        <Container className="mt-20">
+          <Image
+            src={"/dashimage.jpg"}
+            alt="dashimage"
+            width={700}
+            height={700}
+            style={{ borderRadius: "6px" }}
+          />
+        </Container>
+      </Box>
       <Box className="p-6 mt-16">
         <div className="max-w-2xl">
           <h1 className="mt-4 text-5xl font-semibold ">Ticketing System</h1>
