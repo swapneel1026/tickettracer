@@ -7,13 +7,13 @@ const Welcome = () => {
   const construction = false;
   return !construction ? (
     <Flex
-      direction={"row"}
+      direction={{ initial: "column-reverse", md: "row" }}
       justify={"between"}
       gap={"4"}
       className="bg-blue-200 h-screen"
     >
-      <Box className="border-2 w-1/2 p-6">
-        <Container className="mt-20">
+      <Box className="lg:border-r-2 mx-auto w-full lg:w-1/2 p-6">
+        <Container className="lg:mt-20">
           <Image
             src={"/dashimage.jpg"}
             alt="dashimage"
@@ -23,7 +23,7 @@ const Welcome = () => {
           />
         </Container>
       </Box>
-      <Box className="p-6 mt-16">
+      <Box className="p-6 mt-16 mx-auto ">
         <div className="max-w-2xl">
           <h1 className="mt-4 text-5xl font-semibold ">Ticketing System</h1>
           <p className="mt-6 text-xl font-light max-w-lg">
