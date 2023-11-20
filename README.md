@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ticket Tracker
 
-## Getting Started
+## Tech Stack
+- Next.js
+- Prisma
+- Planetscale DB
 
-First, run the development server:
+## Description
+Developed a comprehensive Ticket Tracker application using Next.js, Prisma, and Planetscale DB. The project features a user-friendly UI with Next.js to ensure a seamless user experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Key Features
+- **CRUD Operations:** Built robust backend CRUD APIs using Prisma and Planetscale, enabling users to create, update, and delete tickets effortlessly.
+- **Ticket Management:** Implemented functionalities to view all tickets on different screens, including a dedicated "All Tickets" page.
+- **Dashboard Interface:** Created an intuitive dashboard providing a quick overview of ticket statuses. Integrated bar graphs for visual representation of ticket data.
+- **Dynamic Routes:** Established dynamic routes for efficient viewing and editing of specific tickets, enhancing user navigation.
+- **Sorting Functionality:** Incorporated a sorting feature based on ticket status - Open, In Progress, and Done, facilitating organized ticket management.
+- **Authentication:** Integrated Next Auth with Google providers for secure login/logout, ensuring only authenticated users can access and modify the application.
+- **Assignee Management:** Included a dynamic assignee drop-down, listing all logged-in users. Users can change assignees, and the updated data is reflected in the dashboard's recent updates table.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment Status
+Successfully deployed on [Vercel](https://vercel.com/), ensuring accessibility and reliability for users. This project demonstrates proficiency in Next.js, Prisma, and Planetscale, providing a secure and efficiently deployed ticket tracking solution.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore the code and contribute to the project!
