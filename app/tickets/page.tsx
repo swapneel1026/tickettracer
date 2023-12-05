@@ -10,15 +10,19 @@ const TicketsPage = async ({ searchParams }: { searchParams: any }) => {
   const statusfromParams = searchParams.status;
 
   const allTickets = await prisma.ticket.findMany({
-    where:{status:Status.hasOwnProperty(statusfromParams)?statusfromParams:undefined},
+    where: {
+      status: Status.hasOwnProperty(statusfromParams)
+        ? statusfromParams
+        : undefined,
+    },
     orderBy: { createdAt: "desc" },
   });
 
   return (
     <div className="p-4 max-w-[70rem] mx-auto">
+      <TicketActionBar />
       {allTickets?.length !== 0 ? (
         <>
-          <TicketActionBar />
           <Table.Root variant="surface" className="mt-4">
             <Table.Header>
               <Table.Row>
